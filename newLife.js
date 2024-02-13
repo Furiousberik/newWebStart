@@ -242,3 +242,651 @@
 
 // console.log(factorial(3)); // 6;
 // console.log(factorial(5)); // 120;
+// №21
+// function createDreamTeam(arr) {
+//   return arr
+//     .filter((item) => isNaN(item))
+//     .map((item) => item[0])
+//     .sort()
+//     .join("");
+// }
+
+// console.log(createDreamTeam(["Matt", "Ann", "Dmitry", "Max"])); // 'ADMM';
+// console.log(createDreamTeam(["Olivia", 1111, "Lily", "Oscar", true, null])); // 'LOO';
+// №22
+// function transform(arr) {
+//   if (!Array.isArray(arr)) {
+//     throw new Error("Input is not an array");
+//   }
+
+//   const result = [];
+
+//   for (let i = 0; i < arr.length; i++) {
+//     switch (arr[i]) {
+//       case "--discard-next":
+//         i++;
+//         break;
+//       case "--discard-prev":
+//         if (i > 0 && arr[i - 2] !== "--discard-next") {
+//           result.pop();
+//         }
+//         break;
+//       case "--double-next":
+//         if (i < arr.length - 1) {
+//           result.push(arr[i + 1]);
+//         }
+//         break;
+//       case "--double-prev":
+//         if (i > 0 && arr[i - 2] !== "--discard-next") {
+//           result.push(arr[i - 1]);
+//         }
+//         break;
+//       default:
+//         result.push(arr[i]);
+//         break;
+//     }
+//   }
+
+//   return result;
+// }
+
+// console.log(transform([1, 3, "--double-next", 4])); // [1, 3, 4,4];
+// console.log(transform([1, 3, "--discard-prev", 4])); // [1, 4];
+// console.log(
+//   transform([
+//     1,
+//     3,
+//     "--double-next",
+//     4,
+//     "--double-prev",
+//     5,
+//     "--discard-prev",
+//     8,
+//     "--double-next",
+//     10,
+//   ])
+// ); // [ 1, 3,  4,  4, 4, 8, 10, 10];
+// №23
+// const chainMaker = {
+//   chain: [],
+//   addLink(value) {
+//     this.chain.push(`(${value})`);
+//     return this;
+//   },
+//   removeLink(value) {
+//     this.chain.splice(value - 1, 1);
+//     return this;
+//   },
+//   reverseChain() {
+//     this.chain.reverse();
+//     return this;
+//   },
+//   getLength() {
+//     return this.chain.length;
+//   },
+//   finishChain() {
+//     console.log(this.chain.join("~~"));
+//   },
+// };
+
+// chainMaker.addLink(1).addLink(2).addLink(3).finishChain(); //=> '(1)~~(2)~~(3)'
+// chainMaker.addLink(1).addLink(2).removeLink(1).addLink(3).finishChain(); //=> '(2)~~(3)'
+// chainMaker.addLink(1).addLink(2).reverseChain().addLink(3).finishChain(); //=> '(2)~~(1)~~(3)'
+// №24
+// function isUpperCase(str, character) {
+//   return str.split("")[character] === str.split("")[character].toUpperCase();
+// }
+
+// console.log(isUpperCase("tasks JavaScript", 6)); // true
+// console.log(isUpperCase("tasks JavaScript", 7)); // false
+// console.log(isUpperCase("Tasks", 0)); // true
+// №25
+// function capitalizeFirstLetter(str) {
+//   return str[0].toUpperCase() + str.slice(1);
+// }
+
+// console.log(capitalizeFirstLetter("пример строки")); // Пример строки
+// console.log(capitalizeFirstLetter("программирование")); // Программирование
+// №26
+// метод уже существует
+// "пример строки".startsWith("пример"); // true
+// "всё не по чем".startsWith("чем"); // false
+// №27
+// function replaceAll(find, replace, str) {
+//   return str.replaceAll("abc", "x");
+// }
+
+// const str = "abc def def lom abc abc def";
+// console.log(replaceAll("abc", "x", str)); // x def def lom x x def
+// replaceAll("abc", "redev", str); // redev def def lom redev redev def
+// №28
+// function removeDuplicate(str) {
+//   return [...new Set(str.split(","))].join(", ");
+// }
+
+// console.log(removeDuplicate("вишня, груша, слива, груша")); // "вишня, груша, слива"
+// removeDuplicate("redev, redev, str"); // "redev, str"
+// №29
+// function unique_letters(str) {
+//   return [...new Set(str.split(""))].join("");
+// }
+
+// console.log(unique_letters("anaconda")); // "ancod"
+// removeDuplicate("redev"); // "redv"
+// function alphabetize(str) {
+//   return str.split("").sort().join("");
+// }
+// №30
+// console.log(alphabetize("Europe")); // "Eeopru"
+// alphabetize("redev"); // "deerv"
+// №31
+// function cutString(str, n) {
+//   return str
+//     .split(" ")
+//     .filter((item, index) => index < n)
+//     .join(" ");
+// }
+
+// let str = "Сила тяжести приложена к центру масс тела";
+// console.log(cutString(str, 5)); // "Сила тяжести приложена к центру"
+// cutString(str, 1); // "Сила"
+// №32
+// function strip(str) {
+//   return str
+//     .split(" ")
+//     .filter((item) => isNaN(item))
+//     .join(" ");
+// }
+
+// console.log(strip("    Pasha is  a   good   boy")); // "Pasha is a good boy"
+// №33
+// function comparison(str1, str2) {
+//   return str1.toLowerCase() === str2.toLowerCase();
+// }
+// console.log(comparison("STrinG", "string")); // true
+// console.log(comparison("ALfA", "alpha")); // false
+// №34
+// String.prototype.endsWith = function (substring) {
+//   let res = [];
+//   for (key in this) {
+//     res.push(this[key]);
+//   }
+
+//   console.log(res.join("").split(" ").reverse()[0] === substring);
+// };
+// №34
+
+// const str = "Каждый охотник желает знать";
+// str.endsWith("желает"); // false
+// str.endsWith("охотник"); // false
+// str.endsWith("знать"); // true
+// №35
+// function arrayClone(arr) {
+//   return structuredClone(arr);
+// }
+
+// const vegetables = ["Капуста", "Репа", "Редиска"];
+// const copy = arrayClone(vegetables);
+
+// copy; // ['Капуста', 'Репа', 'Редиска'];
+// vegetables; // ['Капуста', 'Репа', 'Редиска'];
+
+// console.log(vegetables === copy); // false
+// №36
+// function colonOdd(num) {
+//   return num
+//     .toString()
+//     .split("")
+//     .map((item, index, arr) =>
+//       arr[index] % 2 === 1 && arr[index - 1] % 2 === 1 ? ":" + item : item
+//     )
+//     .join("");
+// }
+
+// console.log(colonOdd(55639217)); // "5:563:921:7"
+// console.log(colonOdd(13565484647897518)); // "1:3:56548464789:7:5:18
+// №37
+// function removeDuplicates(arr) {
+//   return [...new Set(arr)];
+// }
+
+// console.log(
+//   removeDuplicates([
+//     "php",
+//     "php",
+//     "css",
+//     "css",
+//     "script",
+//     "script",
+//     "html",
+//     "html",
+//     "java",
+//   ])
+// ); // [ "php", "css", "script", "html", "java" ]
+// console.log(removeDuplicates(["a", "a", "b", "c"])); // ["a", "b", "c"]
+// №38
+// function func(arr1, arr2) {
+//   return arr1.length > arr2.length
+//     ? arr1.map((item, index) => item + arr2[index] || item)
+//     : arr2.map((item, index) => item + arr1[index] || item);
+// }
+
+// console.log(func([1, 2, 3], [2, 1])); // [3, 3, 3]
+// console.log(func([5, 2, 1], [2, 1, 3, 4])); // [7, 3, 4, 4]
+// №39
+// function expand(arr) {
+//   return arr.flat(Infinity);
+// }
+
+// console.log(expand([1, [2, [3, [4]]]])); // "1,2,3,4"
+// console.log(expand([1, [2], [3, [[4]]], [5, 6]])); // "1,2,3,4,5,6"
+// №40
+// function find(arr) {
+//   if (arr.length === 0) {
+//     return null;
+//   }
+//   const frequencyMap = {};
+//   let maxElement = arr[0];
+//   let maxCount = 1;
+//   for (let i = 0; i < arr.length; i++) {
+//     const element = arr[i];
+//     if (frequencyMap[element] == null) {
+//       frequencyMap[element] = 1;
+//     } else {
+//       frequencyMap[element]++;
+//     }
+//     if (frequencyMap[element] > maxCount) {
+//       maxElement = element;
+//       maxCount = frequencyMap[element];
+//     }
+//   }
+//   return maxElement;
+// }
+
+// console.log(find([7, "z", "z", "z", 3, 7, "z", 7, "z", 3, 5, 7])); // "z"
+// console.log(find([1, 1, 2, 2, 1, 7, 4, 7, 1, 3, 1, 7, 1, 1])); // 1
+// №41
+// function sum(a, b, c) {
+//   return a + b + c;
+// }
+
+// const currySum = (fn, ...args) => {
+//   return (...newArgs) => {
+//     const allArgs = [...args, ...newArgs];
+//     if (allArgs.length >= fn.length) {
+//       return fn(...allArgs);
+//     } else {
+//       return currySum(fn, ...allArgs);
+//     }
+//   };
+// };
+// const curiedSum = currySum(sum);
+
+// console.log(curiedSum(1)(2)(3)); // 6
+// curiedSum(3)(3)(3); // 9
+
+// №42
+// function theSame(arr) {
+//   return [...new Set(arr.map((item) => item.split("").sort().join("")))]
+//     .length > 1
+//     ? false
+//     : true;
+// }
+
+// console.log(theSame(["кот", "ток", "кто"])); // true
+// console.log(theSame(["кот", "тк", "кто"])); // false
+// №43
+// function maskify(str) {
+//   return (
+//     str
+//       .split("")
+//       .slice(0, -4)
+//       .map((item) => (item = "#"))
+//       .join("") + str.slice(-4)
+//   );
+// }
+
+// console.log(maskify("4556364607935616")); // "############5616"
+// №44
+// function squareDigits(num) {
+//   return num
+//     .toString()
+//     .split("")
+//     .map((item) => item ** 2)
+//     .join("");
+// }
+
+// console.log(squareDigits(9119)); // 811181
+// console.log(squareDigits(123)); // 149
+// №45
+// function longest(str1, str2) {
+//   return [...new Set(str1.split("").concat(str2.split("")))].sort().join("");
+// }
+
+// console.log(longest("xyaabbbccccdefww", "xxxxyyyyabklmopq")); // "abcdefklmopqxy"
+// console.log(longest("qwdqqwdqwdwqe", "qwwwacsfdsf")); // "acdefqsw"
+// №46
+// function busStops(array) {
+//   return array.flat().reduce((acc, item, index, arr) => {
+//     if (index % 2 === 0) {
+//       return acc + item;
+//     } else {
+//       return acc - item;
+//     }
+//   }, 0);
+// }
+
+// console.log(
+//   busStops([
+//     [3, 0],
+//     [9, 1],
+//     [4, 10],
+//     [12, 2],
+//     [6, 1],
+//     [7, 10],
+//   ])
+// ); // 17
+// console.log(
+//   busStops([
+//     [5, 0],
+//     [9, 2],
+//     [2, 10],
+//     [1, 2],
+//     [6, 1],
+//     [16, 10],
+//   ])
+// ); // 14
+// №47
+// function anagrams(str, array) {
+//   return array.filter(
+//     (item) => item.split("").sort().join("") === str.split("").sort().join("")
+//   );
+// }
+
+// console.log(anagrams("abba", ["aabb", "abcd", "bbaa", "dada"])); // ['aabb', 'bbaa']
+// console.log(anagrams("cat", ["tac", "cta", "act", "dada"])); // [ 'tac', 'cta', 'act' ]
+// №48
+// function likes(array) {
+//   switch (array.length) {
+//     case 0:
+//       console.log("no one likes this");
+//       break;
+//     case 1:
+//       console.log(`${array.join("")} likes this`);
+//       break;
+//     case 2:
+//       console.log(`${array.join(" and ")} like this`);
+//       break;
+//     case 3:
+//       console.log(`${array[0]}, ${array[1]} and ${array[2]} like this`);
+//       break;
+//     default:
+//       console.log(
+//         `${array[0]}, ${array[1]} and ${array.length - 2} others like this`
+//       );
+//   }
+// }
+
+// likes([]); //'no one likes this'
+// likes(["Peter"]); // 'Peter likes this'
+// likes(["Jacob", "Alex"]); //'Jacob and Alex like this'
+// likes(["Max", "John", "Mark"]); // 'Max, John and Mark like this'
+// likes(["Alex", "Jacob", "Mark", "Max"]); //'Alex, Jacob and 2 others like this'
+// №49
+// function findMissingLetter(array) {
+//   return String.fromCharCode(
+//     array
+//       .map((item, index, arr) => item.charCodeAt())
+//       .filter((item, index, arr) => arr[index + 1] - arr[index] === 2)
+//       .map((item) => item + 1)
+//       .join("")
+//   );
+// }
+
+// console.log(findMissingLetter(["a", "b", "c", "e"])); // 'e'
+// console.log(findMissingLetter(["a", "b", "d"])); // 'c'
+
+//№50
+// function moveZeros(array) {
+//   return array
+//     .filter((item) => item !== 0)
+//     .concat(array.filter((item) => item === 0));
+// }
+
+// console.log(moveZeros([false, 1, 0, 1, 2, 0, 1, 3, "a"])); // [false,1,1,2,1,3,"a",0,0]
+// console.log(moveZeros(["a", 0, "b", 0, "d"])); // ['a','b','d',0,0]
+
+// class User {
+//   constructor(name) {
+//     this.name = name;
+//   }
+//   method() {
+//     return this.name;
+//   }
+// }
+// class User2 extends User {
+//   constructor(name, age) {
+//     super(name);
+//     this.age = age;
+//   }
+//   method() {
+//     return super.method() + " " + this.age;
+//   }
+// }
+
+// const obj2 = new User2("Igor", 23);
+
+// console.log(obj2.method());
+// class Nein {
+//   name = "ewr";
+//   #method() {
+//     return this.name;
+//   }
+//   meth() {
+// //     return this.#method();
+// //   }
+// // }
+
+// // let obj = new Nein();
+// // console.log(obj.meth());
+// class Parent {
+//   method() {
+//     console.log("Это метод родительского класса");
+//   }
+// }
+
+// class Child extends Parent {
+//   method() {
+//     console.log("Это переопределенный метод дочернего класса");
+//   }
+// }
+
+// let child = new Child();
+// let par = new Parent();
+// child.method(); // выводит 'Это переопределенный метод дочернего класса'
+
+// class Staticlink {
+//   constructor(name) {
+//     this.name = name;
+//   }
+//   static method() {
+//     return 24;
+//   }
+// }
+
+// class Newstat extends Staticlink {
+//   constructor() {
+//     super();
+//   }
+//   method() {
+//     return "31";
+//   }
+//   static name = 24;
+// }
+// let b = new Newstat();
+// console.log(b.method());
+// console.log(b instanceof Newstat);
+
+// class Berik {
+//   constructor(name, age) {
+//     this.name = name;
+//     this.age = age;
+//   }
+//   game = "football";
+// }
+
+// let redev = new Berik("Igor", 24);
+// console.log(redev);
+// class Person {
+//   constructor(name) {
+//     this.name = name;
+//   }
+// }
+
+// class Employee extends Person {
+//   constructor(name, title) {
+//     super(name);
+//     this.title = title;
+//   }
+// }
+
+// const john = new Employee("Developer", "erw"); // ошибка
+
+// console.log(john.name);
+
+// class Person {
+//   constructor(name) {
+//     this._name = name; // _name - это "приватное" свойство
+//   }
+
+//   // Геттер для имени
+//   get name() {
+//     console.log("Getting name");
+//     return this._name;
+//   }
+
+//   // Сеттер для имени
+//   set name(value) {
+//     this._name = value;
+//   }
+// }
+// let person = new Person("John");
+// // console.log(person.name); // Получаем имя, выводит "Getting name" и "John"
+
+// person.name = "Bob"; // Устанавливаем имя, выводит "Setting name to Bob"
+// console.log(person.name); // Получаем имя, выводит "Getting name" и "Bob"
+
+// ==========================================
+// КОлбэки
+
+// Напиши функцию sumNumbers, которая принимает два числа a и b и callback-функцию.
+// Функция должна сложить числа a и b и передать результат в callback-функцию которая выведет результат в консоль.
+
+// function sumNumbers(a, b, callback) {
+//   let res = a + b;
+//   callback(res);
+// }
+
+// function aCallback(res) {
+//   console.log(res);
+// }
+
+// sumNumbers(2, 5, aCallback);
+
+// Напиши функцию, которая принимает массив и callback-функцию,
+// а затем проходит по каждому элементу массива и вызывает переданную callback-функцию для каждого элемента.
+// Callback-функция должна принимать один аргумент - текущий элемент массива - и выводить его в консоль.
+
+// function call(a, callback) {
+//   for (i = 0; i < a.length; i++) {
+//     callback(a[i]);
+//   }
+// }
+// function callbackFunc(a) {
+//   console.log(a + 2);
+// }
+
+// call([1, 2, 3, 4, 5], callbackFunc);
+
+// Напиши функцию, которая принимает массив строк и callback-функцию, а затем вызывает переданную callback-функцию для каждой строки в массиве.
+// Сallback-функция должна преобразовывать строку в верхний регистр и выводить ее в консоль.
+
+let strings = [
+  "Всем привет, вы на канале Митер Макс!",
+  "Ну а я Коннор, и я проверю, работает ли это на самом деле",
+];
+
+// function call(a, callback) {
+//   for (i = 0; i < a.length; i++) {
+//     callback(a[i]);
+//   }
+// }
+// function callbackFunc(b) {
+//   console.log(b.toUpperCase());
+// }
+
+// call(strings, callbackFunc);
+
+// Напиши функцию, которая принимает массив чисел и callback-функцию, а затем вызывает переданную callback-функцию для каждого элемента в массиве.
+// Сallback-функция должна проверять, является ли число четным, и выводить его в консоль, если это так.
+
+// let numbers = [4, 23, 52, 1, 35, 2, 3];
+// function call(a, callback) {
+//   for (i = 0; i < a.length; i++) {
+//     if (i % 2 === 0) {
+//       callback(a[i]);
+//     }
+//   }
+// }
+// function callbackFunc(b) {
+//   console.log(b);
+// }
+
+// call(numbers, callbackFunc);
+
+// Напиши функцию, которая принимает массив объектов и callback-функцию, а затем вызывает переданную callback-функцию для каждого объекта
+// в массиве. Сallback-функция должна проверять, есть ли у объекта свойство "age" и выводить его значение в консоль, если это так.
+// let obj = [
+//   {
+//     name: "Igor",
+//     age: 24,
+//   },
+//   {
+//     name: "Max",
+//   },
+//   { age: 35 },
+// ];
+// function call(a, callback) {
+//   for (let key in a) {
+//     callback(a[key]);
+//   }
+// }
+// function aCall(b) {
+//   if ("age" in b) {
+//     console.log(b.age);
+//   }
+// }
+
+// call(obj, aCall);
+
+// =================================
+// Промисы
+
+// Напиши функцию, которая получает на вход два числа и возвращает Promise,
+// который разрешается через 1 секунду с результатом суммы этих чисел.
+// Если одно из чисел не является числом, Promise должен быть отклонен с ошибкой.
+
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => resolve(1 + "f2"), 1000);
+});
+
+promise
+  .then((data) => {
+    if (isNaN(data)) {
+      return reject();
+    }
+    console.log(data);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
