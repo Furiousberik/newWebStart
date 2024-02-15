@@ -876,17 +876,75 @@ let strings = [
 // который разрешается через 1 секунду с результатом суммы этих чисел.
 // Если одно из чисел не является числом, Promise должен быть отклонен с ошибкой.
 
-const promise = new Promise((resolve, reject) => {
-  setTimeout(() => resolve(1 + "f2"), 1000);
-});
+// const promise = new Promise((resolve, reject) => {
+//   setTimeout(() => resolve(1 + "f2"), 1000);
+// });
 
-promise
-  .then((data) => {
-    if (isNaN(data)) {
-      return reject();
-    }
-    console.log(data);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+// promise
+//   .then((data) => {
+//     if (isNaN(data)) {
+//       return reject();
+//     }
+//     console.log(data);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+
+// Напиши функцию getUser(id), которая возвращает промис, который разрешается (resolve)
+// пользователем с заданным идентификатором, или отклоняется с ошибкой, если пользователь не найден.
+// const users = [
+//   { id: 1, name: "Nastya" },
+//   { id: 2, name: "Ivan" },
+//   { id: 4, name: "Pavel" },
+// ];
+
+// const getUser = (users, id) => {
+//   const promise = new Promise((resolve, reject) => {
+//     const find = users.find((item) => item.id === id);
+//     return find ? resolve(find) : reject("Пользователь не найден");
+//   });
+//   promise
+//     .then((data) => {
+//       console.log(data);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// };
+
+// getUser(users, 2); // { id: 2, name: "Ivan" }
+// getUser(users, 3); // "Пользователь не найден"
+
+// Напиши функцию sum(numbers), которая возвращает промис, который разрешается (resolve) суммой чисел в массиве,
+// или отклоняется с ошибкой, если массив пуст
+
+// const sum = (numbers) => {
+//   return new Promise((resolve, reject) => {
+//     const reduce = numbers.reduce((acc, item) => acc + item, 0);
+//     return reduce ? resolve(reduce) : reject("Массив пуст");
+//   });
+// };
+
+// sum([1, 2, 3, 4, 5]).then((sum) => console.log(sum)); // 15
+// sum([]).catch((err) => console.log(err)); // "Массив пуст"
+
+// Напиши функцию delayedGreeting(name, delay), которая будет возвращать Promise, который будет разрешаться (resolve)
+// через заданный промежуток времени delay и выводить на экран приветствие Hello, ${name}!.
+
+// function delayedGreeting(name, delay) {
+//   const promise = new Promise((resolve, reject) => {
+//     setTimeout(() => resolve(`Hello, ${name}!`), delay);
+//   });
+//   promise.then((data) => console.log(data)).catch((err) => console.log(err));
+// }
+
+// delayedGreeting("PAsha", 1000);
+// delayedGreeting("Vlad", 2000);
+// delayedGreeting("Angelina", 3000);
+
+// Напиши функцию waitForAll(promises), которая будет принимать массив Promise и возвращать новый Promise,
+// который разрешится (resolve), когда все Promise из массива promises будут выполнены.
+// Результатом выполнения нового Promise будет массив результатов выполнения каждого из Promise из исходного массива.
+
+function waitForAll(promises) {}
