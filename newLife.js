@@ -947,4 +947,261 @@ let strings = [
 // который разрешится (resolve), когда все Promise из массива promises будут выполнены.
 // Результатом выполнения нового Promise будет массив результатов выполнения каждого из Promise из исходного массива.
 
-function waitForAll(promises) {}
+// const prom = [
+//   Promise.resolve("Promise 1 resolved"),
+//   Promise.reject("Promise 1 rejected"),
+//   Promise.resolve("Promise 1 resolved"),
+// ];
+
+// function waitForAll(promises) {
+//   Promise.allSettled(promises).then((results) => {
+//     return Promise.resolve(results).then((result) => {
+//       console.log(result.map((item) => item.value || item.reason));
+//     });
+//   });
+// }
+
+// waitForAll(prom);
+// Promise.reject("a")
+//   .catch((p) => p + "b")
+//   .catch((p) => p + "c")
+//   .then((p) => p + "d")
+//   .finally((p) => p + "e")
+//   .then((p) => console.log(p));
+
+// ========================================================
+
+// await/async
+
+// Напиши функцию, которая принимает на вход строку и возвращает промис,
+// который разрешается через указанное количество миллисекунд, где
+// количество миллисекунд равно длине строки.
+
+// async function asyncFunc(str) {
+//   const promise = new Promise((resolve) => {
+//     setTimeout(() => console.log(str), str.length * 1000);
+//   });
+//   return await promise;
+// }
+
+// asyncFunc("REdev");
+
+// Напиши функцию, которая получает на вход число и возвращает промис,
+//  который будет разрешен только после того, как будет вычислено факториал этого числа.
+
+// async function asyncFunc(num) {
+//   function asyncFac(n) {
+//     return n ? n * asyncFac(n - 1) : 1;
+//   }
+//   return await new Promise((resolve, reject) => {
+//     try {
+//       resolve(asyncFac(num));
+//     } catch (err) {
+//       reject(err);
+//     }
+//   });
+// }
+// asyncFunc(5)
+//   .then((res) => console.log(res))
+//   .catch((err) => console.log(err));
+
+// В задаче нужно написать 2 промиса. Первый вернет твое имя. Второй вернет твой возраст.
+// Через асинхронную функцию обработать промисы и вернуть промис, который завершается успешно со значением строки.
+// Пример строки: "Имя - возраст" "Паша - 26"
+// Полученую строку вывести в консоль...
+// Если хотя бы один из промисов завершается с отклонением, функция должна вернуть промис со строкой "плохой запрос"
+
+// async function asyncFunc(name, age) {
+//   const promise1 = new Promise((resolve, reject) => {
+//     if (typeof name === "string") {
+//       resolve(name);
+//     }
+//     reject(new Error("Имя введено неправильно"));
+//   });
+//   const promise2 = new Promise((resolve, reject) => {
+//     if (typeof age === "number") {
+//       resolve(age);
+//     }
+//     reject(new Error("Не число"));
+//   });
+//   try {
+//     console.log(`${await promise1} - ${await promise2}`);
+//   } catch (error) {
+//     console.log("Плохой запрос");
+//   }
+// }
+
+// asyncFunc("Igor", 24);
+
+// Напиши функцию, которая получает на вход два аргумента: строку и число. Функция должна возвращать промис,
+// который будет разрешен только после того, как введенная строка будет выведена в консоль указанное количество раз.
+// Например, если функции переданы аргументы "hello" и 3, то промис должен разрешиться только после того, как строка
+// "hello" будет выведена в консоль 3 раза.
+
+// async function asyncFunc(str, num) {
+//   function strNum(s, n) {
+//     for (i = 1; i <= n; i++) {
+//       console.log(s);
+//     }
+//   }
+//   return await new Promise((resolve) => {
+//     resolve(strNum(str, num));
+//   });
+// }
+// asyncFunc("hello!", 3);
+
+// Напиши функцию, которая принимает 2 промиса (оба успешно завершенных).
+// Первый возвращает твое имя, второй твою фамилию.
+// Функция должна вернуть успешно завершенный промис с имя + фамилия
+// const name = "Igor";
+// const lastName = "Borisenko";
+
+// const promise1 = new Promise((resolve) => resolve(name));
+// const promise2 = new Promise((resolve) => resolve(lastName));
+
+// async function asyncFunc(prom1, prom2) {
+//   console.log(`${await prom1} ${await prom2}`);
+// }
+
+// asyncFunc(promise1, promise2);
+
+// console.log(1);
+// setTimeout(() => console.log(2), 1000);
+
+// console.log(3);
+// new Promise((res) => res(4)).then((data) => console.log(data));
+// setTimeout(() => console.log(5), 2000);
+// Promise.resolve(6).then((data) => console.log(data));
+// new Promise((res) => setTimeout(() => res(7), 3000)).then((data) =>
+//   console.log(data)
+// );
+// 1, 3, 4, 6, 2, 5, 7
+
+// setTimeout(() => console.log(5), 0);
+// new Promise((res) => res(1)).then((data) => console.log(data));
+// setTimeout(() => console.log(2), 1000);
+// Promise.resolve(3).then((data) => console.log(data));
+// console.log(4);
+// new Promise((res) => setTimeout(() => res(7), 2000)).then((data) =>
+//   console.log(data)
+// );
+// for (let i = 0; i < 2; i++) {
+//   console.log(i);
+// }
+
+// function prepareCelebration(participants) {
+//   return participants < 10
+//     ? "Флаги, баннеры, закуски"
+//     : participants < 50
+//     ? "Флаги, баннеры, закуски, столы, стулья, места для отдыха"
+//     : "Флаги, баннеры, закуски, столы, стулья, места для отдыха, аренд";
+// }
+
+// console.log(prepareCelebration(10));
+// // Для 5 участников: "Флаги, баннеры, закуски"
+
+// console.log(prepareCelebration(20));
+// // Для 20 участников: "Флаги, баннеры, закуски, столы, стулья, места для отдыха"
+
+// console.log(prepareCelebration(100));
+// // Для 100 участников: "Флаги, баннеры, закуски, столы, стулья, места для отдыха, аренд"
+
+// ==========================================
+// Fetch
+
+const register = {
+  username: "berawwik",
+  email: "prioao@gmail.com",
+  password: "b1gor_Smile",
+  gender: "male",
+  age: 24,
+};
+// async function registration() {
+//   try {
+//     const response = await fetch(
+//       "https://todo-redev.herokuapp.com/api/users/register",
+//       {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(register),
+//       }
+//     );
+//     const data = await response.json();
+//     console.log("data: ", data);
+//   } catch (error) {
+//     console.log("error: ", error);
+//   }
+// }
+
+const log = {
+  email: "prioaaro@gmail.com",
+  password: "b1gor_Smile",
+};
+
+async function login(token) {
+  try {
+    const response = await fetch(
+      "https://todo-redev.herokuapp.com/api/auth/login",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(log),
+      }
+    );
+    const data = await response.json();
+    token = data.token;
+    console.log("data: ", data);
+  } catch (error) {
+    console.log("error: ", error);
+  }
+  return token;
+}
+
+// const task1 = {
+//   title: "Съесть мыло",
+// };
+// const task2 = {
+//   title: "Сделать уроки ",
+// };
+async function createTask(task, token) {
+  try {
+    const response = await fetch("URL", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(task),
+    });
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function main() {
+  // зарегистрировать пользователя
+  // await registration();
+
+  // авторизоваться
+  const { token } = await login();
+
+  // // создать таску
+  const { id } = await createTask("Купить рыбу", token);
+
+  // // список всех тасок
+  // const tasks = await getTasks(token);
+
+  // // изменить таску
+  // await editTask("Купить мясо", id, token);
+
+  // // удалить таску
+  // await deleteTask(id, token);
+}
+
+main();
