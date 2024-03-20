@@ -1110,72 +1110,65 @@ let strings = [
 // Fetch
 
 const register = {
-  username: "berawwik",
-  email: "prioao@gmail.com",
-  password: "b1gor_Smile",
+  username: "berwawwik",
+  email: "pr1oao@gmail.com",
+  password: "b1goer_Smile",
   gender: "male",
   age: 24,
 };
-// async function registration() {
-//   try {
-//     const response = await fetch(
-//       "https://todo-redev.herokuapp.com/api/users/register",
-//       {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(register),
-//       }
-//     );
-//     const data = await response.json();
-//     console.log("data: ", data);
-//   } catch (error) {
-//     console.log("error: ", error);
-//   }
-// }
+async function registration() {
+  try {
+    const response = await fetch(
+      "https://todo-redev.herokuapp.com/api/users/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(register),
+      }
+    );
+    const data = await response.json();
+    console.log("data: ", data);
+  } catch (error) {
+    console.log("error: ", error);
+  }
+}
 
 const log = {
-  email: "prioaaro@gmail.com",
-  password: "b1gor_Smile",
+  email: "pr1oao@gmail.com",
+  password: "b1goer_Smile",
 };
 
-async function login(token) {
+async function login() {
   try {
     const response = await fetch(
       "https://todo-redev.herokuapp.com/api/auth/login",
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(log),
       }
     );
     const data = await response.json();
-    token = data.token;
-    console.log("data: ", data);
+    // console.log("data: ", data);
+    return data.token;
   } catch (error) {
     console.log("error: ", error);
   }
-  return token;
 }
 
-// const task1 = {
-//   title: "Съесть мыло",
-// };
-// const task2 = {
-//   title: "Сделать уроки ",
-// };
 async function createTask(task, token) {
   try {
-    const response = await fetch("URL", {
+    const response = await fetch("https://todo-redev.herokuapp.com/api/todos", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(task),
+      body: JSON.stringify({ title: task }),
     });
     const data = await response.json();
     console.log(data);
@@ -1184,24 +1177,77 @@ async function createTask(task, token) {
   }
 }
 
+async function getTasks(token) {
+  try {
+    const response = await fetch("https://todo-redev.herokuapp.com/api/todos", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(),
+    });
+    const data = await response.json();
+    console.log("data:", data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function editTask(task, id, token) {
+  try {
+    const response = await fetch(
+      `https://todo-redev.herokuapp.com/api/todos/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title: task }),
+      }
+    );
+    const data = await response.json();
+    console.log("data:", data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+async function deleteTask(id, token) {
+  try {
+    const response = await fetch(
+      `https://todo-redev.herokuapp.com/api/todos/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(),
+      }
+    );
+    const data = await response.json();
+    console.log("data", data);
+  } catch (error) {
+    console.log(error);
+  }
+}
 async function main() {
   // зарегистрировать пользователя
   // await registration();
 
   // авторизоваться
-  const { token } = await login();
-
+  const token = await login();
   // // создать таску
-  const { id } = await createTask("Купить рыбу", token);
+  const id = await createTask("Купить рыбу", token);
 
   // // список всех тасок
-  // const tasks = await getTasks(token);
+  const tasks = await getTasks(token);
 
   // // изменить таску
-  // await editTask("Купить мясо", id, token);
+  await editTask("Поймать муху", 3593, token);
 
   // // удалить таску
-  // await deleteTask(id, token);
+  await deleteTask(3593, token);
 }
 
 main();
